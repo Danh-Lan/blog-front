@@ -1,0 +1,9 @@
+figure {
+  text-align: center; /* Centers both image and caption */
+}
+
+figcaption {
+  font-style: italic;
+  color: gray;
+  margin-top: 0.5rem; /* Adjusts space between image and caption */
+}
