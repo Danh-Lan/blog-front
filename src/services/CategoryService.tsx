@@ -1,9 +1,11 @@
 import Category from "../type/Category";
 
+const BACK_URL : string = import.meta.env.VITE_BACK_URL;
+
 async function getAllCategories(): Promise<Category[]> {
   try {
-    const response = await fetch('http://localhost:8080/api/blog/category/get-all');
-    
+    const response = await fetch(`${BACK_URL}/api/blog/category/get-all`);
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -19,7 +21,7 @@ async function getAllCategories(): Promise<Category[]> {
 
 async function createCategory(category: Category): Promise<Category | null> {
   try {
-    const response = await fetch('http://localhost:8080/api/blog/category/create', {
+    const response = await fetch(`${BACK_URL}/api/blog/category/create`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,7 +44,7 @@ async function createCategory(category: Category): Promise<Category | null> {
 
 async function updateCategory(id: number, category: Category): Promise<Category | null> {
   try {
-    const response = await fetch(`http://localhost:8080/api/blog/category/update/${id}`, {
+    const response = await fetch(`${BACK_URL}/api/blog/category/update/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -65,7 +67,7 @@ async function updateCategory(id: number, category: Category): Promise<Category 
 
 async function deleteCategory(id: number): Promise<boolean> {
   try {
-    const response = await fetch(`http://localhost:8080/api/blog/category/delete/${id}`, {
+    const response = await fetch(`${BACK_URL}/api/blog/category/delete/${id}`, {
       method: 'DELETE',
     });
     

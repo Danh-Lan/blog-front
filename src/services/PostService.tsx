@@ -1,8 +1,10 @@
 import Post from "../type/Post";
 
+const BACK_URL : string = import.meta.env.VITE_BACK_URL;
+
 async function addCategoryToPost(postId: number, categoryId: number): Promise<Post | null> {
   try {
-    const response = await fetch(`http://localhost:8080/api/blog/post/${postId}/add-category/${categoryId}`, {
+    const response = await fetch(`${BACK_URL}/api/blog/post/${postId}/add-category/${categoryId}`, {
       method: 'POST'
     });
     
@@ -21,7 +23,7 @@ async function addCategoryToPost(postId: number, categoryId: number): Promise<Po
 
 async function removeCategoryFromPost(postId: number, categoryId: number): Promise<Post | null> {
   try {
-    const response = await fetch(`http://localhost:8080/api/blog/post/${postId}/remove-category/${categoryId}`, {
+    const response = await fetch(`${BACK_URL}/api/blog/post/${postId}/remove-category/${categoryId}`, {
       method: 'DELETE',
     });
     
@@ -40,7 +42,7 @@ async function removeCategoryFromPost(postId: number, categoryId: number): Promi
 
 async function getPostsByCategory(categoryId: number): Promise<Post[]> {
   try {
-    const response = await fetch(`http://localhost:8080/api/blog/post/get-by-category/${categoryId}`);
+    const response = await fetch(`${BACK_URL}/api/blog/post/get-by-category/${categoryId}`);
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -57,7 +59,7 @@ async function getPostsByCategory(categoryId: number): Promise<Post[]> {
 
 async function getPostBySlug(slug: string): Promise<Post> {
   try {
-    const response = await fetch(`http://localhost:8080/api/blog/post/get/${slug}`);
+    const response = await fetch(`${BACK_URL}/api/blog/post/get/${slug}`);
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -75,7 +77,7 @@ async function getPostBySlug(slug: string): Promise<Post> {
 
 async function getAllPosts(): Promise<Post[]> {
   try {
-    const response = await fetch('http://localhost:8080/api/blog/post/get-all');
+    const response = await fetch(`${BACK_URL}/api/blog/post/get-all`);
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -92,7 +94,7 @@ async function getAllPosts(): Promise<Post[]> {
 
 async function createPost(post: Post): Promise<Post | null> {
   try {
-    const response = await fetch('http://localhost:8080/api/blog/post/create', {
+    const response = await fetch(`${BACK_URL}/api/blog/post/create`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -115,7 +117,7 @@ async function createPost(post: Post): Promise<Post | null> {
 
 async function updatePost(id: number, post: Post): Promise<Post | null> {
   try {
-    const response = await fetch(`http://localhost:8080/api/blog/post/update/${id}`, {
+    const response = await fetch(`${BACK_URL}/api/blog/post/update/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -138,7 +140,7 @@ async function updatePost(id: number, post: Post): Promise<Post | null> {
 
 async function deletePost(id: number): Promise<boolean> {
   try {
-    const response = await fetch(`http://localhost:8080/api/blog/post/delete/${id}`, {
+    const response = await fetch(`${BACK_URL}/api/blog/post/delete/${id}`, {
       method: 'DELETE',
     });
     
